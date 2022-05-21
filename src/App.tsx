@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          자동 배포 테스트
+          자동 배포 테스트 123
         </p>
         <a
           className="App-link"
