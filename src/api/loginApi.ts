@@ -1,4 +1,5 @@
-import axios from "axios";
+import axiosInstance from "./index";
+
 
 type LoginRequest = {
     email: string,
@@ -6,7 +7,7 @@ type LoginRequest = {
 };
 
 export const loginApi = (loginRequest: LoginRequest) =>
-    axios.post("/auth",
+    axiosInstance.post("/auth",
         {
             userId: loginRequest.email,
             userPassword: loginRequest.password

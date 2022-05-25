@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import LoginContainer from "./containers/LoginContainer";
@@ -9,6 +8,7 @@ import {applyMiddleware, createStore} from "redux";
 import rootReducer from "./modules";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
+import MainContainer from "./containers/MainContainer";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,8 +19,8 @@ root.render(
     <Provider store={store}>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="home" element={<LoginContainer />} />
+                <Route path="/" element={<MainContainer />} />
+                <Route path="/login" element={<LoginContainer />} />
             </Routes>
         </BrowserRouter>
     </Provider>

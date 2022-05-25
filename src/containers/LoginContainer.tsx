@@ -38,7 +38,7 @@ const LoginContainer = () => {
         <div>
             <LoginForm email={email} password={password} isLoginSuccess={isLoginSuccess}
                        onEmailChange={onEmailChange} onPasswordChange={onPasswordChange} onClickLogin={onClickLogin} />
-            <CustomAlert visibility={isLoginFail} message={errorMessage}></CustomAlert>
+            {isLoginFail&&<CustomAlert message={errorMessage}></CustomAlert>}
         </div>
     );
 };
