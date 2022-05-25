@@ -6,11 +6,14 @@ import {Button} from "@mui/material";
 type LoginProps = {
     email: string;
     password: string;
+    isLoginSuccess: boolean;
     onEmailChange: (email: string) => void;
     onPasswordChange: (password: string) => void;
+    onClickLogin: () => void ;
 }
 
 const LoginForm = (loginProps: LoginProps) =>{
+
     return (
         <Box
             component="form"
@@ -28,9 +31,10 @@ const LoginForm = (loginProps: LoginProps) =>{
                 label="Password"
                 type="password"
                 autoComplete="current-password"
+                onChange={(event)=>loginProps.onPasswordChange(event.target.value)}
             />
             <br/>
-            <Button variant="contained">Login</Button>
+            <Button variant="contained" onClick={loginProps.onClickLogin}>Login</Button>
         </Box>
     );
 }

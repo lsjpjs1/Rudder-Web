@@ -4,22 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Home from "./Home";
-import {createStore} from "redux";
+import LoginContainer from "./containers/LoginContainer";
+import {applyMiddleware, createStore} from "redux";
 import rootReducer from "./modules";
 import {Provider} from "react-redux";
+import thunk from "redux-thunk";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 root.render(
     <Provider store={store}>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="home" element={<Home />} />
+                <Route path="home" element={<LoginContainer />} />
             </Routes>
         </BrowserRouter>
     </Provider>
