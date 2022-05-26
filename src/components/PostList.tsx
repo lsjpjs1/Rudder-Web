@@ -14,7 +14,7 @@ const PostList = (postListProps: PostListProps) => {
                 <div key={postPreview.postId}>
                     <Button>
                         <div>
-                            <img height={"50px"} src={postPreview.userProfileImageUrl}/>
+                            <img height={"50px"} alt={""} src={postPreview.userProfileImageUrl}/>
                             <div style={{display:"inline"}}>
                                 {postPreview.userNickname}<br/>
                                 {postPreview.categoryName}<br/>

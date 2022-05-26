@@ -13,7 +13,7 @@ const MainContainer = () => {
     useEffect(() => {
         // @ts-ignore
         dispatch(callGetPosts())
-    }, []);
+    });
 
     return (
         <div>
