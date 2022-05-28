@@ -1,10 +1,12 @@
 import loginReducer from "./login";
 import {combineReducers} from "redux";
 import postReducer from "./post";
+import schoolReducer from "./school";
 
 const rootReducer = combineReducers({
     loginReducer,
-    postReducer
+    postReducer,
+    schoolReducer
 });
 
 export default rootReducer;

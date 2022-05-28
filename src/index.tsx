@@ -9,6 +9,7 @@ import rootReducer from "./modules";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import MainContainer from "./containers/MainContainer";
+import HomeContainer from "./containers/HomeContainer";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,7 +20,7 @@ root.render(
     <Provider store={store}>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<MainContainer />} />
+                <Route path="/" element={<HomeContainer />} />
                 <Route path="/login" element={<LoginContainer />} />
             </Routes>
         </BrowserRouter>
