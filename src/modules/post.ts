@@ -1,7 +1,7 @@
 import {ThunkAction} from "redux-thunk";
 import {RootState} from "./index";
 import {AnyAction} from "redux";
-import {getPosts} from "../api/postApi";
+import {getPosts, GetPostsRequest} from "../api/postApi";
 
 const GET_POST_SUCCESS = 'GET_POST_SUCCESS' as const;
 
@@ -24,7 +24,7 @@ export interface PostPreview {
 }
 
 
-export const getPostSuccess = (posts : Array<PostPreview>) => ({
+export const getPostSuccess = (posts: Array<PostPreview>) => ({
     type: GET_POST_SUCCESS,
     posts: posts
 });
@@ -39,16 +39,15 @@ export const getPostSuccess = (posts : Array<PostPreview>) => ({
 // }
 
 export const callGetPosts =
-    (): ThunkAction<void, RootState, unknown, AnyAction> =>
-        async (dispatch,getState) => {
-            await getPosts({}).then((res)=>{
+    (getPostRequest: GetPostsRequest): ThunkAction<void, RootState, unknown, AnyAction> =>
+        async (dispatch, getState) => {
+            await getPosts(getPostRequest).then((res) => {
                 dispatch(getPostSuccess(res.data.posts))
-            }).catch((error)=>{
+            }).catch((error) => {
 
-               console.log(error.response.data)
+                console.log(error.response.data)
             })
         }
-
 
 
 type PostAction =
@@ -56,11 +55,18 @@ type PostAction =
 
 
 type PostState = {
-    posts: Array<PostPreview>
+    posts: Array<PostPreview>,
+    getPostRequest: GetPostsRequest
 };
 
 const initialState: PostState = {
     posts: [],
+    getPostRequest: {
+        endPostId: null,
+        categoryId: null,
+        isMyPost: false,
+        searchBody: null
+    }
 };
 
 function postReducer(
@@ -69,7 +75,14 @@ function postReducer(
 ) {
     switch (action.type) {
         case GET_POST_SUCCESS:
-            return {...state, posts: action.posts}
+            return {
+                ...state,
+                posts: action.posts,
+                getPostRequest: {
+                    ...state.getPostRequest,
+                    endPostId: action.posts.length > 0 ? action.posts[action.posts.length - 1].postId : state.getPostRequest.endPostId
+                }
+            }
         default:
             return state
     }

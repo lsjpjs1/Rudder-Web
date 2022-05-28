@@ -22,6 +22,7 @@ root.render(
             <Routes>
                 <Route path="/" element={<HomeContainer />} />
                 <Route path="/login" element={<LoginContainer />} />
+                <Route path="/main" element={<MainContainer />} />
             </Routes>
         </BrowserRouter>
     </Provider>

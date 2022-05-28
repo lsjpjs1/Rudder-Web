@@ -4,6 +4,7 @@ import {Button, Typography} from "@mui/material";
 
 type PostListProps = {
     postPreviews: Array<PostPreview>
+    onNextBtnClick: () => void
 }
 
 const PostList = (postListProps: PostListProps) => {
@@ -36,6 +37,9 @@ const PostList = (postListProps: PostListProps) => {
     return (
         <div>
             {elements}
+            <div>
+                <Button onClick={postListProps.onNextBtnClick}>Next</Button>
+            </div>
         </div>
 
     );
