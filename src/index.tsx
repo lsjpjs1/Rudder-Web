@@ -10,12 +10,13 @@ import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import MainContainer from "./containers/MainContainer";
 import HomeContainer from "./containers/HomeContainer";
+import SearchContainer from "./containers/SearchContainer";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 root.render(
     <Provider store={store}>
         <BrowserRouter>
@@ -23,6 +24,7 @@ root.render(
                 <Route path="/" element={<HomeContainer />} />
                 <Route path="/login" element={<LoginContainer />} />
                 <Route path="/main" element={<MainContainer />} />
+                <Route path="/search" element={<SearchContainer />} />
             </Routes>
         </BrowserRouter>
     </Provider>

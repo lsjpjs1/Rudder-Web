@@ -2,6 +2,7 @@ import {ThunkAction} from "redux-thunk";
 import {RootState} from "./index";
 import {AnyAction} from "redux";
 import {getPosts, GetPostsRequest} from "../api/postApi";
+import {getPostSearchSuccess} from "./search";
 
 const GET_POST_SUCCESS = 'GET_POST_SUCCESS' as const;
 
@@ -39,10 +40,16 @@ export const getPostSuccess = (posts: Array<PostPreview>) => ({
 // }
 
 export const callGetPosts =
-    (getPostRequest: GetPostsRequest): ThunkAction<void, RootState, unknown, AnyAction> =>
+    (getPostRequest: GetPostsRequest, postPageType: string): ThunkAction<void, RootState, unknown, AnyAction> =>
         async (dispatch, getState) => {
             await getPosts(getPostRequest).then((res) => {
-                dispatch(getPostSuccess(res.data.posts))
+                console.log("call",getPostRequest)
+                if(postPageType=="main") {
+                    dispatch(getPostSuccess(res.data.posts))
+                }else if(postPageType=="search") {
+                    dispatch(getPostSearchSuccess(res.data.posts))
+                }
+
             }).catch((error) => {
 
                 console.log(error.response.data)
