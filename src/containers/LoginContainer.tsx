@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import LoginForm from "../components/LoginForm";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../modules";
 import {callLogin, updateEmail, updatePassword} from "../modules/login";
 import CustomAlert from "../components/CustomAlert";
 import {useNavigate } from 'react-router-dom';
+import {callGetPosts} from "../modules/post";
 const LoginContainer = () => {
     const email = useSelector((state: RootState) => state.loginReducer.email)
     const password = useSelector((state: RootState) => state.loginReducer.password)
@@ -28,10 +29,11 @@ const LoginContainer = () => {
         dispatch(callLogin())
     }
 
-    if(isLoginSuccess) {
-        navigate("/")
-    }
-
+    useEffect(() => {
+        if(isLoginSuccess){
+            navigate("/")
+        }
+    },[isLoginSuccess]);
 
 
     return (

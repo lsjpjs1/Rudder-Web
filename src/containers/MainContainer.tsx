@@ -20,6 +20,7 @@ const MainContainer = () => {
     const searchPosts = useSelector((state: RootState) => state.searchReducer.posts)
     const navigate = useNavigate()
 
+
     useEffect(() => {
         getPosts()
     },[]);

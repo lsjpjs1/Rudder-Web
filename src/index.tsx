@@ -9,6 +9,7 @@ import rootReducer from "./modules";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import MainContainer from "./containers/MainContainer";
+import ShowPostContainer from "./containers/ShowPostContainer";
 import HomeContainer from "./containers/HomeContainer";
 import SearchContainer from "./containers/SearchContainer";
 
@@ -23,6 +24,7 @@ root.render(
             <Routes>
                 <Route path="/" element={<HomeContainer />} />
                 <Route path="/login" element={<LoginContainer />} />
+                <Route path="/post" element={<ShowPostContainer />} />
                 <Route path="/main" element={<MainContainer />} />
                 <Route path="/search" element={<SearchContainer />} />
             </Routes>
