@@ -17,6 +17,7 @@ const PostList = (postListProps: PostListProps) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const onClickPost = (postPreview: PostPreview) => {
+        navigate("/post")
         // @ts-ignore
         dispatch(clickPost(postPreview))
     }
@@ -24,13 +25,6 @@ const PostList = (postListProps: PostListProps) => {
     const selectedPost = useSelector((state: RootState) => state.postReducer.selectedPost)
     const showPostFlag = useSelector((state: RootState) => state.postReducer.showPostFlag)
 
-    useEffect(() => {
-        if(showPostFlag){
-            dispatch(showPostRestore())
-            navigate("/post")
-
-        }
-    },[selectedPost]);
 
     const elements = postListProps.postPreviews.map((postPreview) => {
             const simpleDate = new Date(postPreview.postTime)
