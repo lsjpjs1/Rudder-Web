@@ -12,6 +12,7 @@ import MainContainer from "./containers/MainContainer";
 import ShowPostContainer from "./containers/ShowPostContainer";
 import HomeContainer from "./containers/HomeContainer";
 import SearchContainer from "./containers/SearchContainer";
+import ChatContainer from "./containers/ChatContainer";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -22,7 +23,7 @@ root.render(
     <Provider store={store}>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<HomeContainer />} />
+                <Route path="/" element={<ChatContainer />} />
                 <Route path="/login" element={<LoginContainer />} />
                 <Route path="/post" element={<ShowPostContainer />} />
                 <Route path="/main" element={<MainContainer />} />

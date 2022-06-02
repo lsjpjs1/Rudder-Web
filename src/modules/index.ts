@@ -3,12 +3,14 @@ import {combineReducers} from "redux";
 import postReducer from "./post";
 import schoolReducer from "./school";
 import searchReducer from "./search";
+import chatReducer from "./chat";
 
 const rootReducer = combineReducers({
     loginReducer,
     postReducer,
     schoolReducer,
-    searchReducer
+    searchReducer,
+    chatReducer
 });
 
 export default rootReducer;
