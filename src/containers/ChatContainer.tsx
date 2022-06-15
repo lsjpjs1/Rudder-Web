@@ -1,39 +1,34 @@
-import {Button} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {addTalks, sendChat, setChatMessage, ws} from "../modules/chat";
-import TextField from "@mui/material/TextField";
 import {RootState} from "../modules";
 import {useEffect} from "react";
+import {getChatRooms} from "../api/chatApi";
+import {callGetChatRooms} from "../modules/chat";
 
 
 const ChatContainer = () => {
 
-    const talks = useSelector((state: RootState) => state.chatReducer.talks)
+    const chatRooms = useSelector((state: RootState) => state.chatReducer.chatRooms)
     const dispatch = useDispatch()
-    const send = () => {
-        // @ts-ignore
-        dispatch(sendChat())
-    }
+
+    console.log(chatRooms.get(1))
 
     useEffect(()=>{
-        ws.onmessage = (evt: MessageEvent) => {
-
-            dispatch(addTalks(evt.data))
-        };
+        // @ts-ignore
+        dispatch(callGetChatRooms({}))
     },[])
 
-    let elements = talks.map((s)=>(
+    let elements = Array.from(chatRooms)
+        .sort(([chatRoomNumber1,chatRoom1],[chatRoomNumber2,chatRoom2])=>chatRoom1.recentMessageTime>chatRoom2.recentMessageTime ? 1: -1
+        )
+        .map(([chatRoomId,chatRoom])=>(
         <div>
-            {s}
+            {chatRoom.recentMessageTime}
+            {chatRoom.recentMessage}
+            {chatRoom.notReadMessageCount}
         </div>
     ));
     return (
         <div>
-
-            <TextField
-                onChange={(e)=>dispatch(setChatMessage(e.target.value))}
-                ></TextField>
-            <Button onClick={send}>send</Button>
             {elements}
         </div>
     )
